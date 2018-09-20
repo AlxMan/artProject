@@ -10,5 +10,6 @@ import org.apache.ibatis.annotations.Param;
  * @Version 1.0
  */
 public interface UserDao {
-    UserEntity selectByUsername(@Param("username")String username) throws Exception;
+    UserEntity selectByUsername(@Param("username")String username ,
+                               @Param("password")String password) throws Exception;
 }

@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
         username=$("帐号不能为空！",username) ;
         password=$("密码不能为空！",password) ;
 
-        UserEntity userEntity = userDao.selectByUsername(username);
+        UserEntity userEntity = userDao.selectByUsername(username,password);
         if (userEntity==null){
             throw new ThisSystemException("帐号不存在");
         }

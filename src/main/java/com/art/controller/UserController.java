@@ -18,7 +18,6 @@ import javax.servlet.http.HttpSession;
  * @Version 1.0
  */
 @Controller
-@RequestMapping("/user")
 //这里用了@SessionAttributes，可以直接把model中的user(也就key)放入其中
 //这样保证了session中存在user这个对象
 @SessionAttributes("user")
@@ -27,11 +26,11 @@ public class UserController {
     UserService userServivce;
 
     //表单提交过来的路径
-    @RequestMapping(value = "/checkLogin", method = RequestMethod.POST)
-    public String checkLogin(UserEntity userEntity, Model model){
+    @RequestMapping(value = "/checkLogin", method = RequestMethod.GET)
+    public String checkLogin(String username,String password, Model model){
         //调用service方法
         try {
-            userEntity = userServivce.checkLogin(userEntity.getUsername(), userEntity.getPassword());
+           UserEntity userEntity = userServivce.checkLogin(username, password);
             //若有user则添加到model里并且跳转到成功页面
             if(userEntity != null){
                 model.addAttribute("user",userEntity);
@@ -52,7 +51,7 @@ public class UserController {
     }
 
     //注销方法
-    @RequestMapping("/outLogin")
+    @RequestMapping("/login")
     public String outLogin(HttpSession session){
         //通过session.invalidata()方法来注销当前的session
         session.invalidate();
