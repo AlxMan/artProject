@@ -1,15 +1,24 @@
 package com.art.controller;
-import com.art.entity.UserEntity;
+import com.alibaba.fastjson.JSON;
+import com.art.bean.request.UserLoginRequest;
+import com.art.bean.response.UserLoginResponse;
+import com.art.common.CookieUtil;
 import com.art.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.art.common.MD5Util.toMd5;
 
 /**
  * @Description TODO
@@ -18,43 +27,25 @@ import javax.servlet.http.HttpSession;
  * @Version 1.0
  */
 @Controller
-//这里用了@SessionAttributes，可以直接把model中的user(也就key)放入其中
-//这样保证了session中存在user这个对象
-@SessionAttributes("user")
 public class UserController {
+    private Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     UserService userServivce;
 
-    //表单提交过来的路径
-    @RequestMapping(value = "/checkLogin", method = RequestMethod.GET)
-    public String checkLogin(String username,String password, Model model){
-        //调用service方法
-        try {
-           UserEntity userEntity = userServivce.checkLogin(username, password);
-            //若有user则添加到model里并且跳转到成功页面
-            if(userEntity != null){
-                model.addAttribute("user",userEntity);
-                return "success";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return "fail";
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+    @ResponseBody
+    public String login(HttpServletResponse res, HttpServletRequest req, UserLoginRequest request) {
+        request.setPwd(toMd5(request.getPwd()));
+        log.info("[UserInfoController] - [login] 入参-> "+request.toString());
+        UserLoginResponse login = userServivce.login(request);
+        log.info("[UserInfoController] - [login] 出参-> "+login.toString());
+    // 放置cookies
+    Map<String,String> map = new HashMap<String, String>();
+    map.put("jwt",login.getJwt());
+    map.put("name",login.getName());
+    CookieUtil.addCookieMap(res,map);
+        return JSON.toJSONString(login);
     }
+    
 
-    //测试超链接跳转到另一个页面是否可以取到session值
-    @RequestMapping("/anotherpage")
-    public String hrefpage(){
-
-        return "anotherpage";
-    }
-
-    //注销方法
-    @RequestMapping("/login")
-    public String outLogin(HttpSession session){
-        //通过session.invalidata()方法来注销当前的session
-        session.invalidate();
-        return "login";
-    }
 }

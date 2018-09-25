@@ -1,6 +1,6 @@
 package com.art.service;
-import com.art.entity.UserEntity;
-
+import com.art.bean.request.UserLoginRequest;
+import com.art.bean.response.UserLoginResponse;
 /**
  * @Description TODO
  * @Author art
@@ -8,5 +8,5 @@ import com.art.entity.UserEntity;
  * @Version 1.0
  */
 public interface UserService {
-   public UserEntity checkLogin(String username,String password)throws  Exception;
+   public UserLoginResponse login(UserLoginRequest request);
 }
