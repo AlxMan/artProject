@@ -2,6 +2,11 @@ package com.art.bean.entity;
 
 import java.io.Serializable;
 
+/*
+　* @Description: 图书实体类，需要实现Serializable接口以便存放在redis中
+　* @user wangxianchao
+　* @date 2018/9/26 17:50
+*/
 public class Book implements Serializable {
   private long bookId;
   private String name;

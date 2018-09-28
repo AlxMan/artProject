@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $.ajax({
     type: "GET",
-    url: "http://localhost:8081/book/list/",
+    url: "http://127.0.0.1:9987/book/list/",
     dataType: 'json',
     global: "false",
     success: function (data) {

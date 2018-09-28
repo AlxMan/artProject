@@ -1,11 +1,16 @@
 package com.art.common;
 
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
 
+/*
+　* @Description:
+　* @user wangxianchao
+　* @date 2018/9/26 17:59
+*/
 public class CookieUtil {
 
   /**

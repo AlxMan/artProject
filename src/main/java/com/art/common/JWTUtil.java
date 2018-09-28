@@ -1,17 +1,22 @@
 package com.art.common;
 
 import com.alibaba.fastjson.JSON;
-import com.art.bean.contains.CommonEnum;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import org.joda.time.DateTime;
-
+import com.art.bean.contains.CommonEnum;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import org.joda.time.DateTime;
+
+/*
+　* @Description:
+　* @user wangxianchao
+　* @date 2018/9/26 17:53 
+*/
 public class JWTUtil {
 
 

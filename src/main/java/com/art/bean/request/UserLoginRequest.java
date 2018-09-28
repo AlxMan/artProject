@@ -1,9 +1,10 @@
 package com.art.bean.request;
 
-/**
- * Created by hisen on 17-8-26.
- * E-mail: hisenyuan@gmail.com
- */
+/*
+　* @Description:
+　* @user wangxianchao
+　* @date 2018/9/26 17:58
+*/
 public class UserLoginRequest {
   private String name;
   private String pwd;

@@ -4,7 +4,7 @@ $(document).ready(function () {
     var id = thisUrl.split('=')[1];
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/seckill/" + id + "/detail",
+        url: "http://127.0.0.1:9987/seckill/" + id + "/detail",
         dataType: 'json',
         global: "false",
         success: function (data) {

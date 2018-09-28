@@ -1,9 +1,10 @@
 package com.art.bean.response;
 
-/**
- * Created by hisen on 17-8-26.
- * E-mail: hisenyuan@gmail.com
- */
+/*
+　* @Description:
+　* @user wangxianchao
+　* @date 2018/9/26 17:59
+*/
 public class UserLoginResponse extends CommonResponse {
   private String name;
   private Integer userState;

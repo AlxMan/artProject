@@ -5,21 +5,25 @@ import com.art.bean.contains.CommonEnum;
 import com.art.bean.entity.JWTInfo;
 import com.art.bean.response.CommonResponse;
 import com.art.common.JWTUtil;
+import java.io.PrintWriter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
-
+/*
+　* @Description:
+　* @user wangxianchao
+　* @date 2018/9/26 18:00 
+*/
 public class JWTCheckInterceptor implements HandlerInterceptor {
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
   public boolean preHandle(HttpServletRequest request,
-                           HttpServletResponse response, Object o) throws Exception {
+      HttpServletResponse response, Object o) throws Exception {
     response.setCharacterEncoding("utf-8");
     String jwt = request.getHeader("Authorization");
     String name = request.getHeader("name");
@@ -53,18 +57,18 @@ public class JWTCheckInterceptor implements HandlerInterceptor {
   }
 
   public void postHandle(HttpServletRequest request,
-                         HttpServletResponse response, Object o, ModelAndView modelAndView)
+      HttpServletResponse response, Object o, ModelAndView modelAndView)
       throws Exception {
   }
 
   public void afterCompletion(HttpServletRequest httpServletRequest,
-                              HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
+      HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
 
   }
 
   //请求不通过，返回错误信息给客户端
   private void responseMessage(HttpServletResponse response, PrintWriter out,
-                               CommonResponse commonResponse) {
+      CommonResponse commonResponse) {
     response.setContentType("application/json; charset=utf-8");
     String json = JSON.toJSONString(commonResponse);
     out.print(json);

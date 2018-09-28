@@ -1,6 +1,4 @@
-/**
- * Created by hisen on 17-8-27.
- */
+
 //获取本地存储的数据,每次请求都带上
 var jwt = localStorage["jwt"];
 var name = localStorage["name"];
@@ -13,7 +11,7 @@ frm.submit(function (ev) {
       'name' : name
     },
     type: "post",
-    url: "http://localhost:8183/register",
+    url: "http://127.0.0.1:9987/register",
     data: frm.serialize(),
     success:function(data) {
       console.log(data)

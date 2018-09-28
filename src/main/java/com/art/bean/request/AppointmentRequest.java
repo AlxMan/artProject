@@ -1,9 +1,12 @@
 package com.art.bean.request;
 
-
 import com.art.bean.entity.Appointment;
-
-public class AppointmentRequest extends Appointment {
+/*
+　* @Description:
+　* @user wangxianchao
+　* @date 2018/9/26 17:56
+*/
+public class AppointmentRequest extends Appointment{
   private String holdDay;
 
   public String getHoldDay() {

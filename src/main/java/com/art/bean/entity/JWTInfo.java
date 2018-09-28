@@ -1,5 +1,10 @@
 package com.art.bean.entity;
 
+/*
+　* @Description:
+　* @user wangxianchao
+　* @date 2018/9/26 17:53
+*/
 public class JWTInfo {
   private String username;
   private String password;

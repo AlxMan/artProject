@@ -3,7 +3,11 @@ package com.art.common;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-
+/*
+　* @Description:
+　* @user wangxianchao
+　* @date 2018/9/26 17:55
+*/
 public class MD5Util {
 
   public static String toMd5(String str) {
@@ -26,6 +30,6 @@ public class MD5Util {
   }
 
   public static void main(String[] args) {
-    System.out.println(toMd5("hisen"));
+    System.out.println(toMd5("liudehua"));
   }
 }
